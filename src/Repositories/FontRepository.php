@@ -15,6 +15,7 @@ class FontRepository
      * Get fonts from the cache or use the API to refresh it
      * @param array $options
      * @return Collection
+     * @throws \Exception
      */
     protected function fetchFonts(array $options = [])
     {
@@ -23,7 +24,7 @@ class FontRepository
         $sort = Arr::get($options, 'sort', GoogleFontsApi::SORT_POPULARITY);
         $hash = 'google-fonts-' . $sort;
 
-        // "enabled" is a spacial sort type. We will fetch fonts alphabetically and only return those enabled
+        // "enabled" is a special sort type. We will fetch fonts alphabetically and only return those enabled
         $onlyEnabled = $sort === 'enabled';
         if ($onlyEnabled) {
             $sort = GoogleFontsApi::SORT_ALPHA;
@@ -46,9 +47,25 @@ class FontRepository
         if ($onlyEnabled) {
             $manager = app(FontManager::class);
 
-            $fonts = $fonts->filter(function($font) use($manager) {
+            $fonts = $fonts->filter(function ($font) use ($manager) {
                 return $manager->isFontEnabled(Arr::get($font, 'family'));
             });
+        }
+
+        foreach (Arr::get($options, 'filter', []) as $filter => $value) {
+            switch ($filter) {
+                case 'search':
+                    $fonts = $fonts->filter(function ($font) use ($value) {
+                        if (empty($value)) {
+                            return true;
+                        }
+
+                        return strpos(strtolower(Arr::get($font, 'family', '')), strtolower($value)) !== false;
+                    });
+                    break;
+                default:
+                    throw new \Exception('Invalid font filter ' . $filter);
+            }
         }
 
         return $fonts;

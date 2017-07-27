@@ -4,6 +4,9 @@ flagrow-fonts:
             title: Fonts
             description: Manage fonts on your forum.
         browse:
+            label:
+                sort: Sort by
+                search: Search
             sort:
                 alpha: Alphabatically
                 date: Recently added/updated

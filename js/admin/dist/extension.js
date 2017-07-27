@@ -97,7 +97,7 @@ System.register('flagrow/fonts/components/FontsPage', ['flarum/app', 'flarum/Com
                     value: function view() {
                         var _this2 = this;
 
-                        return m('.container', [m('h1', 'Fonts'), m('div', [Select.component({
+                        return m('.container', [m('h1', 'Fonts'), m('.FlagrowFonts-filters', [m('.FlagrowFonts-filter', [m('label', app.translator.trans('flagrow-fonts.admin.browse.label.sort')), Select.component({
                             onchange: function onchange(val) {
                                 return _this2.repository.sort(val);
                             },
@@ -109,7 +109,13 @@ System.register('flagrow/fonts/components/FontsPage', ['flarum/app', 'flarum/Com
                                 trending: app.translator.trans('flagrow-fonts.admin.browse.sort.trending'),
                                 enabled: app.translator.trans('flagrow-fonts.admin.browse.sort.enabled')
                             }
-                        })]), m('.FlagrowFonts-fonts', this.repository.fonts().map(function (font) {
+                        })]), m('.FlagrowFonts-filter', [m('label', app.translator.trans('flagrow-fonts.admin.browse.label.search')), m('input.FormControl[type=text]', {
+                            oninput: m.withAttr('value', function (val) {
+                                return _this2.repository.filter('search', val);
+                            }),
+                            value: this.repository.filteredBy('search'),
+                            placeholder: app.translator.trans('flagrow-fonts.admin.browse.label.search')
+                        })])]), m('.FlagrowFonts-fonts', this.repository.fonts().map(function (font) {
                             return m('.FlagrowFonts-font', {
                                 className: font.enabled() ? 'Font-enabled' : ''
                             }, [m('.Font-header', [m('.Font-name', font.family()), Dropdown.component({
@@ -298,6 +304,9 @@ System.register('flagrow/fonts/utils/FontRepository', ['flarum/app'], function (
                     this.loading = loading;
                     this.resetNavigation();
                     this.sortBy = 'popularity';
+                    this.filters = {
+                        search: ''
+                    };
                 }
 
                 /**
@@ -320,7 +329,8 @@ System.register('flagrow/fonts/utils/FontRepository', ['flarum/app'], function (
                             method: 'GET',
                             url: this.nextPageUrl,
                             data: {
-                                sort: this.sortBy
+                                sort: this.sortBy,
+                                filter: this.filters
                             }
                         }).then(function (result) {
                             var newFonts = result.data.map(function (data) {
@@ -359,6 +369,18 @@ System.register('flagrow/fonts/utils/FontRepository', ['flarum/app'], function (
                     key: 'sortedBy',
                     value: function sortedBy() {
                         return this.sortBy;
+                    }
+                }, {
+                    key: 'filter',
+                    value: function filter(_filter, filterBy) {
+                        this.filters[_filter] = filterBy;
+                        this.resetNavigation();
+                        this.loadNextPage();
+                    }
+                }, {
+                    key: 'filteredBy',
+                    value: function filteredBy(filter) {
+                        return this.filters[filter];
                     }
                 }, {
                     key: 'hasMore',

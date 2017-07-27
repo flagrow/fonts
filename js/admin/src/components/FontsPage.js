@@ -15,18 +15,29 @@ export default class FontsPage extends Component {
     view() {
         return m('.container', [
             m('h1', 'Fonts'),
-            m('div', [
-                Select.component({
-                    onchange: val => this.repository.sort(val),
-                    value: this.repository.sortedBy(),
-                    options: {
-                        alpha: app.translator.trans('flagrow-fonts.admin.browse.sort.alpha'),
-                        date: app.translator.trans('flagrow-fonts.admin.browse.sort.date'),
-                        popularity: app.translator.trans('flagrow-fonts.admin.browse.sort.popularity'),
-                        trending: app.translator.trans('flagrow-fonts.admin.browse.sort.trending'),
-                        enabled: app.translator.trans('flagrow-fonts.admin.browse.sort.enabled'),
-                    }
-                })
+            m('.FlagrowFonts-filters', [
+                m('.FlagrowFonts-filter', [
+                    m('label', app.translator.trans('flagrow-fonts.admin.browse.label.sort')),
+                    Select.component({
+                        onchange: val => this.repository.sort(val),
+                        value: this.repository.sortedBy(),
+                        options: {
+                            alpha: app.translator.trans('flagrow-fonts.admin.browse.sort.alpha'),
+                            date: app.translator.trans('flagrow-fonts.admin.browse.sort.date'),
+                            popularity: app.translator.trans('flagrow-fonts.admin.browse.sort.popularity'),
+                            trending: app.translator.trans('flagrow-fonts.admin.browse.sort.trending'),
+                            enabled: app.translator.trans('flagrow-fonts.admin.browse.sort.enabled'),
+                        },
+                    }),
+                ]),
+                m('.FlagrowFonts-filter', [
+                    m('label', app.translator.trans('flagrow-fonts.admin.browse.label.search')),
+                    m('input.FormControl[type=text]', {
+                        oninput: m.withAttr('value', val => this.repository.filter('search', val)),
+                        value: this.repository.filteredBy('search'),
+                        placeholder: app.translator.trans('flagrow-fonts.admin.browse.label.search'),
+                    }),
+                ]),
             ]),
             m('.FlagrowFonts-fonts', this.repository.fonts().map(
                 font => m('.FlagrowFonts-font', {

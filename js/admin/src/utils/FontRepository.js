@@ -7,6 +7,9 @@ export default class FontRepository {
         this.loading = loading;
         this.resetNavigation();
         this.sortBy = 'popularity';
+        this.filters = {
+            search: '',
+        };
     }
 
     /**
@@ -23,7 +26,8 @@ export default class FontRepository {
             method: 'GET',
             url: this.nextPageUrl,
             data: {
-                sort: this.sortBy
+                sort: this.sortBy,
+                filter: this.filters,
             }
         }).then(result => {
             const newFonts = result.data.map(data => app.store.createRecord('flagrow-fonts', data));
@@ -66,6 +70,26 @@ export default class FontRepository {
      */
     sortedBy() {
         return this.sortBy;
+    }
+
+    /**
+     * Change the value of a filter
+     * @param {string} filter
+     * @param {string} filterBy
+     */
+    filter(filter, filterBy) {
+        this.filters[filter] = filterBy;
+        this.resetNavigation();
+        this.loadNextPage();
+    }
+
+    /**
+     * Get the value of a filter
+     * @param {string} filter
+     * @returns {string}
+     */
+    filteredBy(filter) {
+        return this.filters[filter];
     }
 
     /**
