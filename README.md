@@ -1,5 +1,10 @@
 # Fonts by ![flagrow logo](https://avatars0.githubusercontent.com/u/16413865?v=3&s=20) [flagrow](https://discuss.flarum.org/d/1832-flagrow-extension-developer-group), a project of [Gravure](https://gravure.io/).
 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/flagrow/fonts/blob/master/LICENSE.md)
+[![Latest Stable Version](https://img.shields.io/packagist/v/flagrow/fonts.svg)](https://packagist.org/packages/flagrow/fonts)
+[![Total Downloads](https://img.shields.io/packagist/dt/flagrow/fonts.svg)](https://packagist.org/packages/flagrow/fonts)
+[![Donate](https://img.shields.io/badge/patreon-support-yellow.svg)](https://www.patreon.com/flagrow)
+
 Easily add Google Fonts to your Flarum install.
 
 ## Install
