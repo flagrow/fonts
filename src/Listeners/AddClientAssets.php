@@ -32,6 +32,11 @@ class AddClientAssets
             if ($fontsUrl) {
                 $event->view->addHeadString('<link rel="stylesheet" href="' . $fontsUrl . '">', 'flagrow-fonts');
             }
+
+            $event->addAssets([
+                __DIR__.'/../../js/forum/dist/extension.js',
+            ]);
+            $event->addBootstrapper('flagrow/fonts/main');
         }
     }
 
