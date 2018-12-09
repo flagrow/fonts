@@ -4,6 +4,9 @@
 
 Easily add Google Fonts to your Flarum install.
 
+> Note: To work around an [issue with Flarum](https://github.com/flagrow/fonts/issues/4), we disable horizontal scrolling of editor controls on mobile.
+> This could make it impossible to access some buttons while on a narrow screen.
+
 ## Install
 
 Use [Bazaar](https://discuss.flarum.org/d/5151-flagrow-bazaar-the-extension-marketplace) or install manually:

@@ -5,13 +5,13 @@ namespace Flagrow\Fonts\Api\Controllers;
 use Flagrow\Fonts\Api\Serializers\FontSerializer;
 use Flagrow\Fonts\Managers\FontManager;
 use Flagrow\Fonts\Repositories\FontRepository;
-use Flarum\Api\Controller\AbstractResourceController;
-use Flarum\Core\Access\AssertPermissionTrait;
+use Flarum\Api\Controller\AbstractShowController;
+use Flarum\User\AssertPermissionTrait;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
 
-class ToggleFontController extends AbstractResourceController
+class ToggleFontController extends AbstractShowController
 {
     use AssertPermissionTrait;
 

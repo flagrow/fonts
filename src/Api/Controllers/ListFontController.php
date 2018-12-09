@@ -4,13 +4,14 @@ namespace Flagrow\Fonts\Api\Controllers;
 
 use Flagrow\Fonts\Api\Serializers\FontSerializer;
 use Flagrow\Fonts\Repositories\FontRepository;
-use Flarum\Api\Controller\AbstractCollectionController;
-use Flarum\Api\UrlGenerator;
-use Flarum\Core\Access\AssertPermissionTrait;
+use Flarum\Api\Controller\AbstractListController;
+use Flarum\Http\RouteCollectionUrlGenerator;
+use Flarum\Http\UrlGenerator;
+use Flarum\User\AssertPermissionTrait;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
 
-class ListFontController extends AbstractCollectionController
+class ListFontController extends AbstractListController
 {
     use AssertPermissionTrait;
 
@@ -20,7 +21,7 @@ class ListFontController extends AbstractCollectionController
     public $serializer = FontSerializer::class;
 
     /**
-     * @var UrlGenerator
+     * @var RouteCollectionUrlGenerator
      */
     protected $url;
 
@@ -35,7 +36,7 @@ class ListFontController extends AbstractCollectionController
      */
     public function __construct(UrlGenerator $url, FontRepository $fonts)
     {
-        $this->url = $url;
+        $this->url = $url->to('api');
         $this->fonts = $fonts;
     }
 
@@ -51,7 +52,7 @@ class ListFontController extends AbstractCollectionController
         $results = $this->fonts->index($request->getQueryParams());
 
         $document->addPaginationLinks(
-            $this->url->toRoute('flagrow.fonts.index'),
+            $this->url->route('flagrow.fonts.index'),
             $request->getQueryParams(),
             $offset,
             1, // Add one to the offset to get next page number

@@ -1,0 +1,52 @@
+.FlagrowFonts-fonts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .FlagrowFonts-font {
+        width: 100%;
+        max-width: 300px;
+        border-top: 1px solid #ccc;
+        margin-top: 20px;
+        padding: 20px;
+
+        .Font-header {
+            display: flex;
+            align-items: center;
+
+            .Font-name {
+                flex-grow: 1;
+            }
+        }
+
+        .Font-preview {
+            padding-top: 20px;
+            font-size: 1.6em;
+        }
+
+        &.Font-enabled .Font-dropdown {
+            background: @alert-success-bg;
+        }
+
+        .Font-disable {
+            color: @muted-color;
+        }
+
+        li .Button {
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+    }
+}
+
+.FlagrowFonts-filters {
+    .FlagrowFonts-filter {
+        display: inline-block;
+        vertical-align: top;
+        min-width: 240px;
+
+        label {
+            display: block;
+        }
+    }
+}

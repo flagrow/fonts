@@ -4,7 +4,7 @@ namespace Flagrow\Fonts\Repositories;
 
 use Flagrow\Fonts\Managers\FontManager;
 use Flagrow\Fonts\Search\GoogleFontsApi;
-use Flarum\Core\Search\SearchResults;
+use Flarum\Search\SearchResults;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Arr;

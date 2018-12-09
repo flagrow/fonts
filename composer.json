@@ -21,20 +21,20 @@
         "source": "https://github.com/flagrow/fonts"
     },
     "require": {
-        "flarum/core": "^0.1.0-beta.6",
+        "flarum/core": "^0.1.0-beta.8",
         "guzzlehttp/guzzle": "^6.2"
     },
     "extra": {
         "flarum-extension": {
             "title": "Flagrow Fonts",
             "icon": {
-                "name": "font",
+                "name": "fas fa-font",
                 "backgroundColor": "#f4f4f4",
                 "color": "#5f4bb6"
             }
         },
         "flagrow": {
-            "discuss": "https://discuss.flarum.org/d/6207-flagrow-fonts-easily-add-fonts-to-your-forum"
+            "discuss": "https://discuss.flarum.org/d/6207"
         }
     },
     "autoload": {
