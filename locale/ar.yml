@@ -8,18 +8,18 @@ flagrow-fonts:
                 sort: ترتيب حسب
                 search: بحث
             sort:
-                alpha: ترتيب أبجدي
+                alpha: ألفباء
                 date: آخر إضافة/تحديث
                 popularity: الأشهر
                 trending: الأحدث
-                enabled: مسموح
+                enabled: الخطوط المستعملة
             loader:
                 more: عرض المزيد
                 loading: تحميل...
             select:
-                enable: سماح
+                enable: إستعمال
                 update: تحديث
-            sample-text: هذا نص تجريبي باللغة العربية
+            sample-text: هذا نص تجريبي
         modal:
             settings:
                 title: إعدادات الخطوط
