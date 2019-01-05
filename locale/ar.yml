@@ -1,0 +1,28 @@
+flagrow-fonts:
+    admin:
+        nav:
+            title: خطوط
+            description: إدارة الخطوط في منتداك.
+        browse:
+            label:
+                sort: ترتيب حسب
+                search: بحث
+            sort:
+                alpha: ألفباء
+                date: آخر إضافة/تحديث
+                popularity: الأشهر
+                trending: الأحدث
+                enabled: الخطوط المستعملة
+            loader:
+                more: عرض المزيد
+                loading: تحميل...
+            select:
+                enable: إستعمال
+                update: تحديث
+            sample-text: هذا نص تجريبي
+        modal:
+            settings:
+                title: إعدادات الخطوط
+                field:
+                    googleApiKey: مفتاح واجهة تطبيق غوغل
+                    googleApiKeyDescription: يجب إنشاء مفتاح واجهة تطبيق غوغل ووضعه هنا. أسرع طريقة عبر هذا والنقر على "Get a key"  <a>الرابط</a>
